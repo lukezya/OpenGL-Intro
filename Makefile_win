@@ -1,0 +1,29 @@
+CXX=cl
+COMMONFLAGS= -nologo
+CXXFLAGS= -MD -c
+INCLUDES= -Iinclude
+LFLAGS= -incremental:no -manifest:no OpenGl32.lib glew32.lib SDL2.lib SDL2main.lib -SUBSYSTEM:CONSOLE
+BUILDDIR=build
+SRCDIR=src
+SRC=$(wildcard $(SRCDIR)/*.cpp)
+_OBJ=$(SRC:.cpp=.obj)
+OBJ=$(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(_OBJ))
+TARGET=prac1.exe
+TARGETPATH=$(BUILDDIR)/$(TARGET)
+
+build: $(OBJ) $(TARGET)
+
+run:
+	cd $(BUILDDIR); ./$(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CXX) $(OBJ) -Fe$(TARGETPATH) $(COMMONFLAGS) -link $(LFLAGS)
+
+
+$(BUILDDIR)/%.obj: $(SRCDIR)/%.cpp
+	$(CXX) $(INCLUDES) $(CXXFLAGS) $< -Fo$@ $(COMMONFLAGS)
+
+clean:
+	rm -f $(TARGETPATH)
+	rm -f $(OBJ)
+

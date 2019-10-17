@@ -1,0 +1,18 @@
+OpenGL Practical Framework
+==========================
+
+This is a basic framework which you can use as a starting point for your practical.
+It uses the SDL library to create a window with an OpenGL context and contains sample code which will create a window and draw a triangle.
+It also contains code that will load Wavefront OBJ 3D model files so that you don't need to write your own loader, you just need to figure out how to make use of the data it loads for you.
+Included in this framework is a set of sample models and a sample pair of textures for you to use.
+Note that while the OBJ loader should in theory support most OBJ files, it has not been tested much in the wild and may have some trouble with more complicated models (more detail in geometry.cpp).
+
+Usage Instructions:
+===================
+Two makefiles are provided, one for linux (which works on the lab PCs) and one for Windows.
+To use the linux makefile (./Makefile) just run 'make' to compile and 'make run' to run.
+To use the Windows makefile (./Makefile_win), run 'make -f Makefile_win' to compile, and 'make -f Makefile_win run' to run.
+Note that you will need to have Visual Studio installed and be running from its own console ("Developer Command Prompt for VS...") in order for it to work
+
+When running on Windows, you will need to have `SDL2.dll` and `glew32.dll` included in the same directory as your executable.
+For linux you simply need the `libsdl2-dev` and `libglew-dev` package installed.
